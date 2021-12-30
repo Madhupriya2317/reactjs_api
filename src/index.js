@@ -1,17 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.css";
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Slider from './components/slider';
+import Mindmade from './components/mindmade';
+import ButtonCount from './components/buttoncount';
+import Fetchapi from './components/fetchapi';
+import Profile from './components/profile';
+import Product from './components/product';
+import Productdetails from './components/productdetails';
+import Notfound from './components/Notfound';
+import Addtocart from './components/addtocart';
+import ListArray from './components/list';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+//const Product = lazy(() => import('./components/product'));
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+const routing = (
+                  <Router>
+                      
+                      <div>
+                          <App /> 
+                          <Routes>
+                              <Route path="/" element = {<Slider />} />
+                              <Route path="/mindmade" element={< Mindmade />} />
+                              <Route path="/buttoncount" element={< ButtonCount />} />
+                              <Route path="/fetchapi" element={< Fetchapi />} />  
+                              <Route path="/profile" element={<Profile />}  /> 
+                              <Route path="/product" element={<Product />}  /> 
+                              <Route path="/productdetails" element={<Productdetails />}  />
+                              <Route path="/addtocart" element={<Addtocart />}  />
+                              <Route path="/list" element={<ListArray />} />
+                              <Route path="*" element={<Notfound />}  />  
+                          </Routes>
+                      </div>
+                      
+                </Router>
+    );
+    ReactDOM.render(routing, document.getElementById('root'));
+
+
+

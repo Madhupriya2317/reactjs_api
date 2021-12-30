@@ -1,0 +1,42 @@
+.count{
+    background-image: url('D:/Madhupriya/reactjs_api/src/images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 80%;
+    height: 576px;
+    width: 100%;
+    text-align: center;
+    margin-top: 81px;
+}
+
+.count h1{
+    padding-top: 80px; 
+    color: rgb(252, 5, 157);
+    font-size: 50px;
+}
+
+.count .minus{
+    margin-top: 90px;
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    border-style: none;
+    background-color: rgb(9, 255, 222);
+    font-size: 35px;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+.count .plus{
+    margin-top: 90px;
+    border-radius: 10px;
+    height: 65px;
+    width: 65px;
+    border-style: none;
+    background-color: rgb(9,255,222);
+    font-size: 35px;
+    margin-left: 20px;
+    font-weight: bold;
+}
+

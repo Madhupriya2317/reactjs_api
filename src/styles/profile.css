@@ -1,0 +1,106 @@
+.profile{
+    border: 1px solid black;
+    margin-left: 250px;
+    height: 470px;
+    width: 700px;
+    background-image: linear-gradient(to right,rgb(2, 224, 253),rgb(71, 149, 250));
+}
+
+.profile .formdata{
+    float: left;
+}
+
+.profile label{
+    margin-left: 40px;
+    margin-top: 40px;
+    color: rgb(98, 8, 187);
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 18px;
+}
+
+.profile input{
+    margin-left: 10px;
+    height: 35px;
+    width: 220px;
+    background-color: rgb(4, 165, 240);
+    border: 2px solid rgb(5, 132, 211);
+    border-radius: 10px;
+    color: rgb(226, 41, 211);
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 8px;
+    font-weight: 600;
+}
+
+.profile .avatar{
+    float: right;
+    display: block;
+    margin-top: 50px;
+    margin-right: 80px;
+}
+
+.avatar h4{
+    margin-bottom: 20px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: rgb(98, 8, 187);
+}
+
+.avatar img{
+    border-radius: 50%;
+    height: 140px;
+    width: 140px;
+    border: 2px solid rgb(5, 132, 211);
+}
+
+ .profile button{
+    margin-left: 130px;
+    margin-top: 100px;
+    border-radius: 10px;
+    border: none;
+    padding: 10px 15px;
+    background-color: rgb(99, 43, 253);
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 17px;
+ }
+
+ .profile button:hover{
+     color: rgb(99, 43, 253);
+     background-color: rgb(4, 245, 253);
+     font-weight: 600;
+ }
+
+
+ .updateddata{
+     margin-top: 130px;
+     border: 1px solid black;
+     margin-left: 125px;
+     margin-right: 125px;
+     padding-top: 20px;
+     padding-left: 100px;
+     border-radius: 10px;
+ }
+
+ .updateddata h3{
+     border: 1px solid black;
+     margin-left: -100px;
+     border-radius: 10px;
+     padding: 15px 0 15px 110px;
+     color: blueviolet;
+ }
+
+ .updateddata button{
+     margin-top: -2px;
+     width: 100%;
+     margin-left: -50px;
+     margin-bottom: 10px;
+ }
+
+ .updatestatus h4{
+     padding-left: 130px;
+ }
+
+ .updatestatus button{
+     margin-top: -2px;
+ }

@@ -1,0 +1,35 @@
+.header{
+    background-color: black;
+    height: 80px;
+  }
+  
+  .header .app-logo{
+    margin-top: 10px;
+    margin-left: 30px;
+    height: 70px;
+    width: 80px;
+    background-color: transparent;
+    float: left;
+  }
+  
+  .header .menubar{
+    float: right;
+    display: inline;
+    margin-top: 10px;
+    margin-right: 90px;
+  }
+  
+.text{
+  padding-top: 100px;
+ text-align: center;
+}
+  
+.nav-link{
+  font-family: 'Times New Roman', Times, serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.slider{
+  margin-top: 80px;
+}
