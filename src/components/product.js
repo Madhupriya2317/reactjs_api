@@ -17,8 +17,7 @@ export default function Product(){
     const[select,setSelect] = useState('all');
     const[show,setShow] = useState(false);
     const[add,setAdd] = useState(JSON.parse(window.localStorage.getItem('add')));
-    const offer = 10;
-    const offerPrice = 10/100;
+
 useEffect(()=>{
 
         axios.get('https://fakestoreapi.com/products')
@@ -140,7 +139,7 @@ return(
                     <img src={d.image} alt="product" className="productimage" /> 
                     <h5 className="ps-4">Category : {d.category}</h5>
                     <h5 className="title">{d.title}</h5> 
-                        <h5><FontAwesomeIcon className="icon" icon={faRupeeSign} /><b> {d.price} {(d.price * offerPrice)}</b></h5><p>{offer}% offer</p>
+                        <h5><FontAwesomeIcon className="icon" icon={faRupeeSign} /><b> {d.price}</b></h5>
                         <button onClick={()=>handleProduct(d)}>View Product Details</button>
                         <AddButton handleInc={handleInc}/>
                 </div>

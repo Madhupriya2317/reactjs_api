@@ -13,6 +13,7 @@ import '../src/styles/addtocart.css';
 import '../src/styles/list.css';
 import logo from './images/react.jpg';
 import { Link } from 'react-router-dom';
+import Addtocart from './components/addtocart';
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
                                     <Link className="text-white" href="#Product" to="/list">Array List</Link>
                                   </li>
                                </ul>
+                            </li>
+                            <li>
+                              <Addtocart />
                             </li>
                          </ul>
                      </div>

@@ -9,7 +9,7 @@ export default function Addtocart({count}){
     return(
         <div className="notification">
             <NotificationBadge className="badge" count={count} effect={[Effect.SCALE]} />
-            <FontAwesomeIcon icon={faShoppingCart} className="shoppingcart" />
+            <FontAwesomeIcon icon={faShoppingCart} className="shoppingcart color-white" />
         </div>
     )
 }
