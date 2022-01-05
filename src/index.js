@@ -14,10 +14,11 @@ import Productdetails from './components/productdetails';
 import Notfound from './components/Notfound';
 import Addtocart from './components/addtocart';
 import ListArray from './components/list';
-
+import CounterContextProvider from './context/counterContext';
 //const Product = lazy(() => import('./components/product'));
 
 const routing = (
+    <CounterContextProvider>
                   <Router>
                       
                       <div>
@@ -37,6 +38,7 @@ const routing = (
                       </div>
                       
                 </Router>
+    </CounterContextProvider>
     );
     ReactDOM.render(routing, document.getElementById('root'));
 

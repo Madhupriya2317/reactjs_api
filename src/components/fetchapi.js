@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from "react";
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs,Spinner } from 'react-bootstrap';
 //import { useNavigate } from "react-router-dom";
 import Profile from "./profile";
 import axios from "axios";
@@ -53,7 +53,11 @@ function handlePageChange(pageNumber){
   return (
             <div className="container">
                 {(!isLoading) ?
-                  <h1 className="loading">Loading...</h1>:
+                 <div className="loading">
+                 <Spinner animation="border" role="status" variant="dark">
+                     <span className="visually-hidden">Loading...</span>
+                 </Spinner> 
+             </div>:
                 <div>
                 <Tabs className="tabs" defaultActiveKey="users" activeKey={key} onSelect={(e)=>setKey(e)} >
                         <Tab eventKey="users" title="Users">

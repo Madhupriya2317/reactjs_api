@@ -1,3 +1,4 @@
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -16,8 +17,11 @@ import { Link } from 'react-router-dom';
 import Addtocart from './components/addtocart';
 
 function App() {
+ 
+
   return (
-    <div className="header fixed-top">
+    
+         <div className="header fixed-top">
       <div>
        <img src={logo} className="app-logo" alt="logo"/>
           <div className="menubar ">
@@ -25,7 +29,7 @@ function App() {
                   <div className="container-fluid">
                      <ul className="navbar-nav ">
                         <li className="nav-items ">
-                           <Link className="nav-link text-white text-decoration-none" href="#home" to="/">Home</Link>
+                           <Link className="nav-link text-white text-decoration-none" href="#home" to="/">Home </Link>
                          </li>
                           <li className="nav-items ps-3">
                             <a className="nav-link text-white" href="#aboutus">About Us</a>
@@ -50,15 +54,16 @@ function App() {
                                   </li>
                                </ul>
                             </li>
-                            <li>
-                              <Addtocart />
-                            </li>
+                            
+                                 <Addtocart />
+                            
                          </ul>
                      </div>
                  </nav>
              </div>
             </div>
         </div>
+  
     );
   }
 

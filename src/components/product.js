@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import axios from "axios";
 import {useNavigate}from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import SidebarNav from "./sidebar";
 import ReactPaginate from 'react-paginate';
-import Addtocart from "./addtocart";
 import AddButton from "./addbutton";
+import {Spinner} from 'react-bootstrap'
+import { CounterContext } from "../context/counterContext";
 
 export default function Product(){
     let navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function Product(){
     const[currentpage,setCurrentpage] = useState(1);
     const[select,setSelect] = useState('all');
     const[show,setShow] = useState(false);
-    const[add,setAdd] = useState(JSON.parse(window.localStorage.getItem('add')));
+    const {handleInc} = useContext(CounterContext);
 
 useEffect(()=>{
 
@@ -107,24 +108,19 @@ function handleSelect(e){
 
     setSelect(e.target.value); 
 }
-
-function handleInc(e){
-    e.preventDefault();
-    setAdd(add+1)
-}
-
-useEffect(() => {
-    window.localStorage.setItem('add', add);
-  }, [add]);
+ 
 
 return(
         <div>
             {(!show) ?
-            <h1 className="loading">Loading...</h1> :
+            <div className="loading">
+                <Spinner animation="border" role="status" variant="dark">
+                    <span className="visually-hidden">Loading...</span>
+                </Spinner> 
+            </div> :
             <div>
             <div className="pagetitle">
                 <h2><b>PRODUCT LIST</b></h2>
-                <Addtocart count={add}/>
             </div>
             <div className="product">
             {productData.filter(val=>{

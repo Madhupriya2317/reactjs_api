@@ -1,4 +1,10 @@
 .badge{
-    margin-top: -47px;
-    margin-right: 20px;
+    margin-top: -55px;
+    margin-right: 17px;
+}
+
+.notification{
+    color: white;
+    padding: 58px 0 0 15px;
+    font-size: 20px;
 }
