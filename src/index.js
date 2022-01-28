@@ -14,6 +14,7 @@ import Productdetails from './components/productdetails';
 import Notfound from './components/Notfound';
 import Addtocart from './components/addtocart';
 import ListArray from './components/list';
+import Sample from './components/sample';
 import CounterContextProvider from './context/counterContext';
 //const Product = lazy(() => import('./components/product'));
 
@@ -34,6 +35,7 @@ const routing = (
                               <Route path="/addtocart" element={<Addtocart />}  />
                               <Route path="/list" element={<ListArray />} />
                               <Route path="*" element={<Notfound />}  />  
+                              <Route path="sample" element={<Sample />}  />  
                           </Routes>
                       </div>
                       

@@ -9,7 +9,8 @@ export default function ListArray(){
        
         console.log(color);
         alert(`New ${color} added to the Array`);
-        setListData([...listData,`New ${color}`])
+        // setListData([...listData,`New ${color}`])
+        setListData(listData.concat(color))
     }
 
  return(
