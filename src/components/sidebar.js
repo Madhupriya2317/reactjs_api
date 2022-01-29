@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,HandleSelectE,HandleSelectW,HandleUncheck,isselectM,isselectJ,isselectE,isselectW,isselectA,isselectZ,isselectN,isselectL,isselectO,isselectH}){    
+export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,HandleSelectE,HandleSelectW,HandleUncheck,isselectM,isselectJ,isselectE,isselectW,isselectA,isselectZ,isselectN,isselectL,isselectO,isselectH,isselect1,isselect2,handlePriceRange1,handlePriceRange2}){    
 
  return(
   <div>
@@ -31,6 +31,14 @@ export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,Ha
          <hr className="text-white"/>
       </div>
       <div className="radio-section">
+      <h5>Price Range</h5>
+         <input type="radio" value="1-499" name="pricerange" onChange={handlePriceRange1} checked={isselect1} />
+         <label htmlFor="1-499"> 1-499</label><br />
+         <input type="radio" value="500-999"  name="pricerange" onChange={handlePriceRange2} checked={isselect2}  />
+         <label htmlFor="500-999"> 500-999</label><br />
+      </div><hr className="text-white" />
+      <div className="radio-section">
+      <h5>Category</h5>
          <input type="checkbox" id="men" name="men's clothing" value="men's clothing" onChange={HandleSelectM} checked={isselectM} />
          <label htmlFor="men"> Men's Clothing</label><br />
          <input type="checkbox" id="jewel" name="jewelery" value="jewelery" onChange={HandleSelectJ} checked={isselectJ} />
@@ -39,8 +47,9 @@ export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,Ha
          <label htmlFor="electronics"> Electronics</label><br />
          <input type="checkbox" id="women" name="women's clothing" value="women's clothing" onChange={HandleSelectW} checked={isselectW} />
          <label htmlFor="women"> Women's Clothing</label><br />
-      </div>
-     <div>
+      </div><hr className="text-white" />
+      
+     <div className="apply">
         <button onClick={HandleUncheck}>Clear</button>
      </div>
       {/* <div className="selection">

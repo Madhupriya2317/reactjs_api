@@ -22,7 +22,7 @@ export default function Product(){
     var[selectW,setSelectW] = useState("u");
     var[notSelected,setNotSelected] = useState('')
     const {handleInc} = useContext(CounterContext);
-    const[isselectM,setIsselectM] = useState(false);
+    var[isselectM,setIsselectM] = useState(false);
     var[isselectE,setIsselectE] = useState(false);
     var[isselectJ,setIsselectJ] = useState(false);
     var[isselectW,setIsselectW] = useState(false);
@@ -32,6 +32,8 @@ export default function Product(){
     var[isselectO,setIsselectO] = useState(false);
     var[isselectL,setIsselectL] = useState(false);
     var[isselectH,setIsselectH] = useState(false);
+    var[isselect1,setIsselect1] = useState(false);
+    var[isselect2,setIsselect2] = useState(false);
     var[clicked,setClicked] = useState(false);
 
 useEffect(()=>{
@@ -70,15 +72,17 @@ function handleChecked(e){
     
         if(name === "newer"){
                 if(checked === true){
-                    setClicked(false)
+                    setClicked(true)
                     setIsselectN(true);
-                    setProductData(sortedData);
+                    setIsselectO(false);
+                    // setProductData(sortedData);
 
                 }else return null;
             }else if(name === "atoz"){
                 if(checked === true){
                     setClicked(false)
                     setIsselectA(true);
+                    setIsselectZ(false);
                     console.log("Ascending Order");
                     let sortProduct = sortedData.sort((a, b) => (a.title < b.title) ? 0 : 1);
                     setProductData(sortProduct);
@@ -87,6 +91,7 @@ function handleChecked(e){
             }else if(name === "ztoa"){
                 if(checked === true){
                     setIsselectZ(true);
+                    setIsselectA(false);
                     setClicked(false)
                     console.log("Descending Order");
                     let sortProduct = sortedData.sort((a, b) => (a.title > b.title) ? -1 : 1);
@@ -96,6 +101,7 @@ function handleChecked(e){
             }else if (name === "older"){
                 if(checked === true){
                     setIsselectO(true);
+                    setIsselectN(false);
                     setClicked(false)
                     console.log("Older to Newer")
                     let sortProduct = sortedData.reverse();
@@ -105,6 +111,7 @@ function handleChecked(e){
             }else if(name === "low"){
                 if(checked === true){
                     setIsselectL(true);
+                    setIsselectH(false);
                     setClicked(false)
                     console.log("Low to High");
                     let sortProduct = sortedData.sort((a,b)=>(parseFloat(a.price) - parseFloat(b.price)))
@@ -114,6 +121,7 @@ function handleChecked(e){
             }else if(name === "high"){
                 if(checked === true){
                     setIsselectH(true);
+                    setIsselectL(false);
                     setClicked(false)
                     console.log("High to Low");
                     let sortProduct = sortedData.sort((a,b)=>(parseFloat(b.price) - parseFloat(a.price)))
@@ -169,7 +177,11 @@ function HandleSelectM(e){
     },[selectM,selectJ,selectE,selectW,notSelected]);
 
     function HandleUncheck(){
-        setClicked(true)
+        setClicked(true);
+        setSelectM("u");
+        setSelectJ("u");
+        setSelectE("u");
+        setSelectW("u");
         setIsselectM(false);
         setIsselectJ(false);
         setIsselectE(false);
@@ -180,9 +192,44 @@ function HandleSelectM(e){
         setIsselectN(false);
         setIsselectL(false);
         setIsselectH(false);
+        setIsselect1(false);
+        setIsselect2(false);
     }
    
-   
+   function handlePriceRange1(){
+       setIsselect1(isselect1 = true);
+       setIsselect2(false);
+       setClicked(false)
+       if(isselect1 === true){
+        let sortedData = [...productData];
+        let sortProduct = sortedData.filter(v => {
+            for(var i=1; i <= 499; i++ ){
+                if(i === parseInt(v.price)){
+                  return v;
+                }
+            }
+        })
+        setProductData(sortProduct)  
+       }
+    }
+
+   function handlePriceRange2(){
+    setIsselect2(isselect2 = true);
+    setIsselect1(false);
+    setClicked(false)
+    if(isselect2 === true){
+        let sortedData = [...productData];
+        let sortProduct = sortedData.filter(val => {
+            for(var j=500; j <= 999; j++ ){
+                if(j === parseInt(val.price)){
+                  return val;
+                }
+            }
+        })
+        setProductData(sortProduct)
+    }
+      
+}
 
 return(
         <div>
@@ -222,8 +269,9 @@ return(
                         HandleSelectW={HandleSelectW} HandleUncheck={HandleUncheck}
                         isselectM={isselectM} isselectJ={isselectJ} isselectE={isselectE}
                         isselectW={isselectW} isselectA={isselectA} isselectN={isselectN}
-                        isselectL={isselectL} isselectZ={isselectZ} isselectO={isselectO} isselectH={isselectH}
-
+                        isselectL={isselectL} isselectZ={isselectZ} isselectO={isselectO}
+                        isselectH={isselectH} isselect1={isselect1} isselect2={isselect2} 
+                        handlePriceRange1={handlePriceRange1} handlePriceRange2={handlePriceRange2}
             />
             
             < ReactPaginate

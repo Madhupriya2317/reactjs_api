@@ -35,7 +35,7 @@ const routing = (
                               <Route path="/addtocart" element={<Addtocart />}  />
                               <Route path="/list" element={<ListArray />} />
                               <Route path="*" element={<Notfound />}  />  
-                              <Route path="sample" element={<Sample />}  />  
+                              <Route path="sample" element={<Sample />}  />    
                           </Routes>
                       </div>
                       
