@@ -1,7 +1,7 @@
 import React from "react";
 
 
-export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,HandleSelectE,HandleSelectW,HandleUncheck,isselectM,isselectJ,isselectE,isselectW,isselectA,isselectZ,isselectN,isselectL,isselectO,isselectH,isselect1,isselect2,handlePriceRange1,handlePriceRange2}){    
+export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,HandleSelectE,HandleSelectW,HandleUncheck,isselectM,isselectJ,isselectE,isselectW,isselectA,isselectZ,isselectN,isselectL,isselectO,isselectH,isselect1,isselect2,handlePriceRange}){    
 
  return(
   <div>
@@ -32,10 +32,14 @@ export default function SidebarNav({handleChecked,HandleSelectM,HandleSelectJ,Ha
       </div>
       <div className="radio-section">
       <h5>Price Range</h5>
-         <input type="radio" value="1-499" name="pricerange" onChange={handlePriceRange1} checked={isselect1} />
+      <input type="radio" value="1-499" name="pricerange" onChange={handlePriceRange} checked={isselect1} />
          <label htmlFor="1-499"> 1-499</label><br />
-         <input type="radio" value="500-999"  name="pricerange" onChange={handlePriceRange2} checked={isselect2}  />
+         <input type="radio" value="500-999"  name="pricerange" onChange={handlePriceRange} checked={isselect2}  />
          <label htmlFor="500-999"> 500-999</label><br />
+         {/* <input type="radio" value="1-499" name="pricerange" onChange={handlePriceRange} checked={isselect1} />
+         <label htmlFor="1-499"> 1-499</label><br />
+         <input type="radio" value="500-999"  name="pricerange" onChange={handlePriceRange} checked={isselect2}  />
+         <label htmlFor="500-999"> 500-999</label><br /> */}
       </div><hr className="text-white" />
       <div className="radio-section">
       <h5>Category</h5>

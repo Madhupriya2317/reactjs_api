@@ -11,7 +11,7 @@ import { CounterContext } from "../context/counterContext";
 
 export default function Product(){
     let navigate = useNavigate();
-    
+    const {handleInc} = useContext(CounterContext);
     var[productData,setProductData] = useState([]);
     const datalimit = 10;
     const[currentpage,setCurrentpage] = useState(1);
@@ -20,8 +20,7 @@ export default function Product(){
     var[selectJ,setSelectJ] = useState("u");
     var[selectE,setSelectE] = useState("u");
     var[selectW,setSelectW] = useState("u");
-    var[notSelected,setNotSelected] = useState('')
-    const {handleInc} = useContext(CounterContext);
+    var[notSelected,setNotSelected] = useState('');
     var[isselectM,setIsselectM] = useState(false);
     var[isselectE,setIsselectE] = useState(false);
     var[isselectJ,setIsselectJ] = useState(false);
@@ -35,6 +34,8 @@ export default function Product(){
     var[isselect1,setIsselect1] = useState(false);
     var[isselect2,setIsselect2] = useState(false);
     var[clicked,setClicked] = useState(false);
+    var[price,setPrice] = useState("");
+   
 
 useEffect(()=>{
         axios.get('https://fakestoreapi.com/products')
@@ -45,7 +46,6 @@ useEffect(()=>{
 },[])
 
 function handleProduct(d){
-   
      navigate('/productdetails',{state : {
         productTitle : d.title,
         productPrice : d.price,
@@ -56,16 +56,13 @@ function handleProduct(d){
         productCount : d.rating.count
      }  
   })
- 
 }
 
 function handlePageChange(pageNumber){
-
     setCurrentpage(pageNumber+1);
 }
 
 function handleChecked(e){
-  
     var name = e.target.value;
     var checked = e.target.checked; 
     let sortedData = [...productData];
@@ -75,8 +72,6 @@ function handleChecked(e){
                     setClicked(true)
                     setIsselectN(true);
                     setIsselectO(false);
-                    // setProductData(sortedData);
-
                 }else return null;
             }else if(name === "atoz"){
                 if(checked === true){
@@ -86,7 +81,6 @@ function handleChecked(e){
                     console.log("Ascending Order");
                     let sortProduct = sortedData.sort((a, b) => (a.title < b.title) ? 0 : 1);
                     setProductData(sortProduct);
-                    
                 }else return setProductData(sortedData)
             }else if(name === "ztoa"){
                 if(checked === true){
@@ -96,7 +90,6 @@ function handleChecked(e){
                     console.log("Descending Order");
                     let sortProduct = sortedData.sort((a, b) => (a.title > b.title) ? -1 : 1);
                     setProductData(sortProduct);
-
                 }else return setProductData(sortedData);
             }else if (name === "older"){
                 if(checked === true){
@@ -106,7 +99,6 @@ function handleChecked(e){
                     console.log("Older to Newer")
                     let sortProduct = sortedData.reverse();
                     setProductData(sortProduct);
-
                 }else return setProductData(productData);
             }else if(name === "low"){
                 if(checked === true){
@@ -115,8 +107,7 @@ function handleChecked(e){
                     setClicked(false)
                     console.log("Low to High");
                     let sortProduct = sortedData.sort((a,b)=>(parseFloat(a.price) - parseFloat(b.price)))
-                    setProductData(sortProduct);
-                   
+                    setProductData(sortProduct);                   
                 }else return setProductData(productData);
             }else if(name === "high"){
                 if(checked === true){
@@ -125,14 +116,12 @@ function handleChecked(e){
                     setClicked(false)
                     console.log("High to Low");
                     let sortProduct = sortedData.sort((a,b)=>(parseFloat(b.price) - parseFloat(a.price)))
-                    setProductData(sortProduct);
-                    
+                    setProductData(sortProduct);                   
                 }else return setProductData(productData);
         }
 }
 
 function HandleSelectM(e){
-   
     if(e.target.checked === true){
         setIsselectM(true);
         setClicked(false)
@@ -172,11 +161,11 @@ function HandleSelectM(e){
     }
   }
     
-    useEffect(()=>{
-            setNotSelected(selectM + selectJ + selectE + selectW)
-    },[selectM,selectJ,selectE,selectW,notSelected]);
+useEffect(()=>{
+      setNotSelected(selectM + selectJ + selectE + selectW)
+},[selectM,selectJ,selectE,selectW,notSelected]);
 
-    function HandleUncheck(){
+function HandleUncheck(){
         setClicked(true);
         setSelectM("u");
         setSelectJ("u");
@@ -194,42 +183,40 @@ function HandleSelectM(e){
         setIsselectH(false);
         setIsselect1(false);
         setIsselect2(false);
-    }
-   
-   function handlePriceRange1(){
-       setIsselect1(isselect1 = true);
-       setIsselect2(false);
-       setClicked(false)
-       if(isselect1 === true){
-        let sortedData = [...productData];
-        let sortProduct = sortedData.filter(v => {
-            for(var i=1; i <= 499; i++ ){
-                if(i === parseInt(v.price)){
-                  return v;
-                }
-            }
-        })
-        setProductData(sortProduct)  
-       }
-    }
-
-   function handlePriceRange2(){
-    setIsselect2(isselect2 = true);
-    setIsselect1(false);
-    setClicked(false)
-    if(isselect2 === true){
-        let sortedData = [...productData];
-        let sortProduct = sortedData.filter(val => {
-            for(var j=500; j <= 999; j++ ){
-                if(j === parseInt(val.price)){
-                  return val;
-                }
-            }
-        })
-        setProductData(sortProduct)
-    }
-      
 }
+
+const handlePriceRange = (e) => {
+       var value = e.target.value;
+       var checked = e.target.checked;
+    //    let sortedData = [...productData];
+       
+    //    var sliced1,sliced2;
+       if(value === "1-499"){
+        if(checked === true){
+            setIsselect1(true);
+            setIsselect2(false);
+            setClicked(true);
+        }
+       }else if(value === "500-999"){
+           if(checked === true){
+               setIsselect2(true);
+               setIsselect1(false);
+               setClicked(true);
+           }
+       }
+       setPrice(value);
+       
+    //    let sortProduct = sortedData.filter(val => {
+    //        for( let i=sliced1; i<=sliced2; i++){
+    //            if(i === parseInt(val.price)){
+    //                console.log(val.price)
+    //             //    return val;   
+    //            }
+    //        }
+    //    })
+    //    setProductData(sortProduct)
+     
+     }
 
 return(
         <div>
@@ -244,15 +231,28 @@ return(
                 <h2><b>PRODUCT LIST</b></h2>
             </div>
             <div className="product">
-            {productData.filter((val)=>{
-                if(notSelected === "uuuu" || clicked === true){
+            {productData.filter(val => {
+                if(price === "1-499"){
+                    for( let i=1; i<=499; i++){
+                        if(i === parseInt(val.price)){
+                            return val;   
+                        }
+                    }
+                }else if(price === "500-999"){
+                    for( let i=500; i<=999; i++){
+                        if(i === parseInt(val.price)){
+                            return val;   
+                        }
+                    }
+                }else if(notSelected === "uuuu" || clicked === true){
                     return val;
                 }else if(val.category.toLowerCase().includes(selectM.toLowerCase())||
                          val.category.toLowerCase().includes(selectE.toLowerCase())||
                          val.category.toLowerCase().includes(selectJ.toLowerCase())||
                          val.category.toLowerCase().includes(selectW.toLowerCase())){
                          return val;
-                }else return null;
+                }
+               
             }).slice((currentpage-1)*datalimit,currentpage*datalimit).map((d)=> 
                 <div className="section1" key={d.id}>
                     <img src={d.image} alt="product" className="productimage" /> 
@@ -271,13 +271,13 @@ return(
                         isselectW={isselectW} isselectA={isselectA} isselectN={isselectN}
                         isselectL={isselectL} isselectZ={isselectZ} isselectO={isselectO}
                         isselectH={isselectH} isselect1={isselect1} isselect2={isselect2} 
-                        handlePriceRange1={handlePriceRange1} handlePriceRange2={handlePriceRange2}
+                        handlePriceRange={handlePriceRange}
             />
             
             < ReactPaginate
                                     previousLabel={""}
                                     nextLabel={ "" }
-                                    pageCount = {productData.length/datalimit}
+                                    pageCount = {Math.ceil(productData.length/datalimit)}
                                     onPageChange={(e)=>handlePageChange(e.selected) } 
                                     containerClassName={ "pagination justify-content-center mt-3" }
                                     pageClassName={ "page-item" }
