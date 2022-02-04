@@ -4,10 +4,10 @@ export const CounterContext = createContext();
 
 export default function CounterContextProvider(props){
     const[add,setAdd] = useState(JSON.parse(window.localStorage.getItem('add')));
-
-    function handleInc(e){
-        e.preventDefault();
-        setAdd(add+1)
+    const[id,setId] = useState();
+    function handleInc(id){
+        setId(id);
+        setAdd(add+1);
     }
     
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function CounterContextProvider(props){
 
     
     return(
-        <CounterContext.Provider value={{add,handleInc}}>
+        <CounterContext.Provider value={{add,handleInc,id}}>
             {props.children}
         </CounterContext.Provider>
     )

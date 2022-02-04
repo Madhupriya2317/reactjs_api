@@ -7,4 +7,75 @@
     color: white;
     padding: 58px 0 0 15px;
     font-size: 20px;
+    background-color: transparent;
+    border: transparent;
+}
+
+.filteredCart{
+    margin: 10px -30px 20px 140px ;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 20px 20px;
+    width: 65em;
+    display: grid;
+    grid-template-columns: auto auto ;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.filteredCart img{
+    height: 150px;
+    width: 150px;
+    padding-right: 10px;
+}
+
+.filteredCart h2{
+    margin: 0 10px 15px 120px;
+}
+
+.filteredCart p{
+    font-size: 20px;
+    margin: 0 30px 15px 30px;
+}
+.filteredCart h5{
+    margin: 0 0 15px 35px;
+}
+
+.trashicon button{
+    font-size: 17px;
+    padding: 5px 60px;
+    border-radius: 3px;
+    background-color: rgb(253, 173, 68);
+    border: 2px solid rgb(253, 146, 5);
+    margin-left: 300px;
+}
+
+.trashicon button span{
+    padding-right: 5px;
+}
+
+.icon{
+    font-size: 15px;
+}
+
+.back{
+    margin: 100px 0 0 20px;
+}
+
+.back button{
+    background-color: rgb(98, 98, 253);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+}
+
+.backicon{
+    font-size: 21px;
+    padding-top: 4px;
+    padding-right: 4px;
+}
+
+.back span{
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
 }

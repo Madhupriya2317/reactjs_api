@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {useNavigate}from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,11 +7,22 @@ import SidebarNav from "./sidebar";
 import ReactPaginate from 'react-paginate';
 import AddButton from "./addbutton";
 import {Spinner} from 'react-bootstrap'
-import { CounterContext } from "../context/counterContext";
+import { useDispatch,useSelector } from 'react-redux';
+import actions from "../redux/count/actions";
+import cartactions from "../redux/cartid/actions"
 
 export default function Product(){
+
     let navigate = useNavigate();
-    const {handleInc} = useContext(CounterContext);
+    const dispatch = useDispatch();
+    const count = useSelector(
+        (state) => state.counterReducer
+    );
+    // const Id = useSelector(
+    //     (state) => state.cartReducer
+    // );  
+    const cartid = JSON.parse(window.localStorage.getItem("cartId")) || [];
+    var[id,setId] = useState(cartid);
     var[productData,setProductData] = useState([]);
     const datalimit = 10;
     const[currentpage,setCurrentpage] = useState(1);
@@ -33,20 +44,29 @@ export default function Product(){
     var[isselectH,setIsselectH] = useState(false);
     var[isselect1,setIsselect1] = useState(false);
     var[isselect2,setIsselect2] = useState(false);
-    var[clicked,setClicked] = useState(false);
-    var[price,setPrice] = useState("");
-   
+    var[clicked,setClicked] = useState(false); 
 
 useEffect(()=>{
         axios.get('https://fakestoreapi.com/products')
         .then((res)=>{
             setProductData(res.data)
             setShow(true);
+        }).catch(err=>{
+            return err;
         })  
-},[])
+},[]);
+
+function handleInc(Id){
+    setId(id = [...id,Id])
+    window.localStorage.setItem("cartId",JSON.stringify(id))
+    dispatch({ type: cartactions.CART_ID,id : id})
+    const add = count.count + 1;
+    dispatch({ type: actions.INCREMENT_COUNTER,count : add})
+}
 
 function handleProduct(d){
      navigate('/productdetails',{state : {
+        productId : d.id,
         productTitle : d.title,
         productPrice : d.price,
         productDescription : d.description,
@@ -187,36 +207,17 @@ function HandleUncheck(){
 
 const handlePriceRange = (e) => {
        var value = e.target.value;
-       var checked = e.target.checked;
-    //    let sortedData = [...productData];
-       
-    //    var sliced1,sliced2;
        if(value === "1-499"){
-        if(checked === true){
             setIsselect1(true);
             setIsselect2(false);
             setClicked(true);
-        }
        }else if(value === "500-999"){
-           if(checked === true){
                setIsselect2(true);
                setIsselect1(false);
-               setClicked(true);
-           }
+               setClicked(true); 
        }
-       setPrice(value);
-       
-    //    let sortProduct = sortedData.filter(val => {
-    //        for( let i=sliced1; i<=sliced2; i++){
-    //            if(i === parseInt(val.price)){
-    //                console.log(val.price)
-    //             //    return val;   
-    //            }
-    //        }
-    //    })
-    //    setProductData(sortProduct)
-     
-     }
+}
+
 
 return(
         <div>
@@ -232,26 +233,26 @@ return(
             </div>
             <div className="product">
             {productData.filter(val => {
-                if(price === "1-499"){
+                if(isselect1 === true){
                     for( let i=1; i<=499; i++){
                         if(i === parseInt(val.price)){
                             return val;   
                         }
                     }
-                }else if(price === "500-999"){
+                }else if(isselect2 === true){
                     for( let i=500; i<=999; i++){
                         if(i === parseInt(val.price)){
                             return val;   
                         }
                     }
-                }else if(notSelected === "uuuu" || clicked === true){
-                    return val;
                 }else if(val.category.toLowerCase().includes(selectM.toLowerCase())||
                          val.category.toLowerCase().includes(selectE.toLowerCase())||
                          val.category.toLowerCase().includes(selectJ.toLowerCase())||
                          val.category.toLowerCase().includes(selectW.toLowerCase())){
                          return val;
-                }
+                }else if(notSelected === "uuuu" || clicked === true){
+                         return val;
+                }else return null;
                
             }).slice((currentpage-1)*datalimit,currentpage*datalimit).map((d)=> 
                 <div className="section1" key={d.id}>
@@ -260,7 +261,7 @@ return(
                     <h5 className="title">{d.title}</h5> 
                         <h5><FontAwesomeIcon className="icon" icon={faRupeeSign} /><b> {d.price}</b></h5>
                         <button onClick={()=>handleProduct(d)}>View Product Details</button>
-                        <AddButton handleInc={handleInc}/>
+                        <AddButton handleInc={()=>handleInc(d.id)} />
                 </div>
                 )}
             </div>

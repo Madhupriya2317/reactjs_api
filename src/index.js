@@ -15,13 +15,14 @@ import Notfound from './components/Notfound';
 import Addtocart from './components/addtocart';
 import ListArray from './components/list';
 import Sample from './components/sample';
-import CounterContextProvider from './context/counterContext';
+import Cartitem from './components/cartitem';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 //const Product = lazy(() => import('./components/product'));
 
 const routing = (
-    <CounterContextProvider>
-                  <Router>
-                      
+    <Provider store={store}>
+            <Router>   
                       <div>
                           <App /> 
                           <Routes>
@@ -36,13 +37,10 @@ const routing = (
                               <Route path="/list" element={<ListArray />} />
                               <Route path="*" element={<Notfound />}  />  
                               <Route path="sample" element={<Sample />}  />    
+                              <Route path="cartitem" element={<Cartitem />}  />    
                           </Routes>
                       </div>
-                      
-                </Router>
-    </CounterContextProvider>
+            </Router>
+    </Provider>
     );
     ReactDOM.render(routing, document.getElementById('root'));
-
-
-

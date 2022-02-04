@@ -1,15 +1,30 @@
-import React, { useContext } from "react";
+import React,{useState} from "react";
 import { useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faRupeeSign} from '@fortawesome/free-solid-svg-icons';
 import ReactStars from "react-rating-stars-component";
 import AddButton from "./addbutton";
-import { CounterContext } from "../context/counterContext";
+import { useDispatch,useSelector } from 'react-redux';
+import actions from "../redux/count/actions";
+import cartactions from "../redux/cartid/actions"
 
 export default function Productdetails(){
+    const cartid = JSON.parse(window.localStorage.getItem("cartId")) || [];
+    var[id,setId] = useState(cartid);
     const {state} = useLocation();
-    const {handleInc} = useContext(CounterContext);
- 
+    const dispatch = useDispatch();
+    const count = useSelector(
+        (state) => state.counterReducer
+    );
+
+    function handleInc(Id){
+        setId(id = [...id,Id])
+        window.localStorage.setItem("cartId",JSON.stringify(id))
+        dispatch({ type: cartactions.CART_ID,id : id})
+        const add = count.count + 1;
+        dispatch({ type: actions.INCREMENT_COUNTER,count : add})
+    }
+
  return(
         <div className="details">
             <div className="pagetitle">
@@ -26,7 +41,7 @@ export default function Productdetails(){
                     <h6> Price : <FontAwesomeIcon className="icon" icon={faRupeeSign} />{state.productPrice}</h6>
                     <p> <b> Count : </b> {state.productCount}</p>
                     <p> <b> Rating : </b> {state.productRate}</p> <span><ReactStars  size={40}  isHalf={true} value={state.productRate} edit={false} activeColor="rgb(50, 179, 50)" color="rgb(149, 150, 149)"/></span>
-                    <AddButton  handleInc={handleInc}/>
+                    <AddButton  handleInc={()=>handleInc(state.productId)} />
                 </div>
             </div>
           

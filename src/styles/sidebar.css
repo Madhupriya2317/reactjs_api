@@ -48,8 +48,8 @@ hr{
 .apply button{
   align-content: center;
   margin-left: 55px;
-  background-color: rgb(163, 30, 252);
-  color: white;
+  background-color: rgb(253, 173, 68);
+  border: 2px solid rgb(253, 146, 5);
   font-family: 'Times New Roman', Times, serif;
   font-size: 18px;
   font-weight: 600;
