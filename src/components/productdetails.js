@@ -1,7 +1,7 @@
 import React,{useState} from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation,useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faRupeeSign} from '@fortawesome/free-solid-svg-icons';
+import {faRupeeSign,faArrowAltCircleLeft} from '@fortawesome/free-solid-svg-icons';
 import ReactStars from "react-rating-stars-component";
 import AddButton from "./addbutton";
 import { useDispatch,useSelector } from 'react-redux';
@@ -12,22 +12,35 @@ export default function Productdetails(){
     const cartid = JSON.parse(window.localStorage.getItem("cartId")) || [];
     var[id,setId] = useState(cartid);
     const {state} = useLocation();
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const count = useSelector(
         (state) => state.counterReducer
     );
 
     function handleInc(Id){
-        setId(id = [...id,Id])
-        window.localStorage.setItem("cartId",JSON.stringify(id))
-        dispatch({ type: cartactions.CART_ID,id : id})
+        if(id.length === 0){
+            setId(id = [Id])
+            window.localStorage.setItem("cartId",JSON.stringify(id))
+            dispatch({ type: cartactions.CART_ID,id : id})
+        }else {
+           var addId = JSON.parse(window.localStorage.getItem("cartId"))
+            var finalId = [...addId,Id];
+            window.localStorage.setItem("cartId",JSON.stringify(finalId));
+            dispatch({ type: cartactions.CART_ID,id : finalId})
+        }
         const add = count.count + 1;
         dispatch({ type: actions.INCREMENT_COUNTER,count : add})
     }
 
+ function handleGoBack(){
+    navigate('/product')
+ }
+
  return(
         <div className="details">
             <div className="pagetitle">
+                <button onClick={handleGoBack}><FontAwesomeIcon className="arrowicon" icon={faArrowAltCircleLeft} size={28} /></button>
                 <h3><b>PRODUCT DETAILS</b></h3>
             </div>
             <div className="gridview">

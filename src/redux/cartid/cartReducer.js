@@ -1,4 +1,4 @@
-import actions from "../cartid/actions";
+import actions from "./actions";
 
 const initialState = {
     id : []
@@ -10,7 +10,6 @@ const initialState = {
         return {
             ...state,
             id: action.id
-            // id: [...state.id,action.id]
         }
         default: return state;
     }

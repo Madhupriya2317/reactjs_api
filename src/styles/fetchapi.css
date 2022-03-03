@@ -30,3 +30,12 @@
     margin-top: 50px;
     margin-left: 120px;
   }
+
+  .container .tabs {
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    width: 980px;
+    font-weight: 600;
+  }

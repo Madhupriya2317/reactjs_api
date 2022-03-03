@@ -37,3 +37,44 @@
 .range{
   margin-top: 100px;
 }
+
+.navbar-expand {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  margin-right: -40px;
+}
+
+.searchbar {
+  margin-left: 180px;
+  margin-top: 90px;
+  background-color: black;
+  padding: 10px 0 10px 16px;
+  margin-right: 20px;
+  border-radius: 10px;
+}
+
+.searchicon {
+  background-color: white;
+  border: transparent;
+  padding: 5px 5px;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  color: gray;
+  font-weight: lighter;
+}
+
+.searchinput {
+  border: transparent;
+  padding: 5px 5px;
+  padding-right: 40px;
+  border-radius: 4px 0 0 4px;
+}
+
+.sample2{
+  margin-top: 20px;
+  margin-left: 220px;
+}
+
+.radiosample{
+  margin-top: 100px;
+}

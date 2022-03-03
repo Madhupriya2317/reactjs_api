@@ -5,18 +5,108 @@
 
 .notification{
     color: white;
-    padding: 58px 0 0 15px;
+    padding: 52px 0 0 8px;
     font-size: 20px;
     background-color: transparent;
     border: transparent;
 }
 
-.filteredCart{
+.icon2{
+    font-size: 13px;
+}
+
+.filteredcart {
+ display: grid;
+ grid-template-columns: auto auto;
+}
+
+.filteredCart {
+    display: grid;
+    grid-template-columns: auto auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.cartdata {
+    margin-top: 20px;
+    margin-right: 5px;
+    font-family: 'Times New Roman', Times, serif;
+    width: 320px;
+}
+
+.filteredCart img{
+    padding: 6px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.cartcontent h6{
+    padding-right: 30px;
+    margin-bottom: 2px;
+}
+
+.trashicon{
+   margin-top: -10px;
+}
+
+.trashicon button{
+    margin: -25px -200px 10px 115px;
+    font-size: 19px;
+    background-color: transparent;
+    color: rgb(37, 164, 173);
+    border: 1px outset rgb(24, 253, 253);
+    border-radius: 5px;
+    padding: 0 4px;
+}
+
+.line{
+    color: black;
+    margin: -2px -70px 6px -170px;
+}
+
+.trashicon button span{
+    padding-right: 5px;
+}
+
+.MuiPaper-root.MuiDrawer-paper.MuiDrawer-paperAnchorRight.MuiPaper-elevation16 {
+    margin-top: 80px;
+}
+
+.Cartcount{
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
+.Singlecount{
+    margin-top: -13px;
+    padding-left: 10px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.Singlecount span{
+    font-size: 19px;
+    color: rgba(249, 35, 13, 0.57);
+    margin: -3px 6px 0 6px;
+}
+.count1{
+    border-radius: 50%;
+    background-color: rgb(206, 253, 253);
+    height: 25px;
+    width: 25px;
+    text-align: center;
+    line-height: 1em;  
+    border-color: rgb(24, 253, 253);
+    border-style: outset; 
+    font-weight: bold;
+}
+
+
+/* .filteredCart{
     margin: 10px -30px 20px 140px ;
     border: 2px solid black;
     border-radius: 10px;
     padding: 20px 20px;
-    width: 65em;
+    width: 200px;
     display: grid;
     grid-template-columns: auto auto ;
     font-family: 'Times New Roman', Times, serif;
@@ -78,4 +168,4 @@
 .back span{
     font-size: 18px;
     font-family: 'Times New Roman', Times, serif;
-}
+} */

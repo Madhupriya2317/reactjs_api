@@ -14,10 +14,12 @@ import Productdetails from './components/productdetails';
 import Notfound from './components/Notfound';
 import Addtocart from './components/addtocart';
 import ListArray from './components/list';
-import Sample from './components/sample';
 import Cartitem from './components/cartitem';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import Navtabs from './components/navtabs';
+import Samplecode from './components/samplecode';
+import Productsample from './components/productsample';
 //const Product = lazy(() => import('./components/product'));
 
 const routing = (
@@ -35,9 +37,11 @@ const routing = (
                               <Route path="/productdetails" element={<Productdetails />}  />
                               <Route path="/addtocart" element={<Addtocart />}  />
                               <Route path="/list" element={<ListArray />} />
-                              <Route path="*" element={<Notfound />}  />  
-                              <Route path="sample" element={<Sample />}  />    
+                              <Route path="*" element={<Notfound />}  />      
                               <Route path="cartitem" element={<Cartitem />}  />    
+                              <Route path="navtabs" element={<Navtabs />}  />    
+                              <Route path="samplecode" element={<Samplecode />}  />    
+                              <Route path="productsample" element={<Productsample />}  />    
                           </Routes>
                       </div>
             </Router>

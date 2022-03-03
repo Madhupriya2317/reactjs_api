@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/css/bootstrap.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -15,10 +15,27 @@ import '../src/styles/list.css';
 import logo from './images/react.jpg';
 import { Link } from 'react-router-dom';
 import Addtocart from './components/addtocart';
+import { Drawer,Button } from '@material-ui/core';
+import Cartitem from './components/cartitem';
 
 function App() {
- 
+  
+  const [state, setState] = useState({
+    right: false
+  });
 
+  const toggleDrawer = (anchor, open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    ) {
+      return;
+    }
+
+    setState({ ...state, [anchor]: open });
+  };
+
+ 
   return (
     
          <div className="header fixed-top">
@@ -31,9 +48,6 @@ function App() {
                         <li className="nav-items ">
                            <Link className="nav-link text-white text-decoration-none" href="#home" to="/">Home </Link>
                          </li>
-                          <li className="nav-items ps-3">
-                            <a className="nav-link text-white" href="#aboutus">About Us</a>
-                          </li>
                           <li className="nav-items dropdown ps-3">
                              <a className="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#Pages">Pages</a> 
                               <ul className="dropdown-menu bg-dark ">
@@ -54,8 +68,17 @@ function App() {
                                   </li>
                                </ul>
                             </li>
-                            
-                                 <Addtocart />
+                            <Button onClick={toggleDrawer("right", true)}>
+                                <Addtocart />
+                            </Button>
+                            <Drawer
+                                anchor={"right"}
+                                open={state["right"]}
+                                onClose={toggleDrawer("right", false)}
+                            >
+                               <Cartitem />
+                            </Drawer>
+                                
                             
                          </ul>
                      </div>
